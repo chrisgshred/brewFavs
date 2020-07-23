@@ -8,17 +8,21 @@ module.exports = function (sequelize, DataTypes) {
             unique: true,
         },
         rowNo: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         abv: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL,
+            defaultValue: 0
         },
         ibu: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.INTEGER,
+            defaultValue: 0
         },
         beerId: {
             type: DataTypes.INTEGER,
-            unique: true
+            unique: true,
+            defaultValue: 0
         },
         name: {
             type: DataTypes.STRING,
@@ -32,12 +36,16 @@ module.exports = function (sequelize, DataTypes) {
             references: {
                 model: 'Breweries',
                 key: 'breweryId'
-            } 
+            },
+            defaultValue: 0 
         },
         ounces: {
-            type: DataTypes.DECIMAL
+            type: DataTypes.DECIMAL,
+            defaultValue: 0
         }
-    });
+    },
+    {timestamps: false}
+    );
 
     Beer.associate = function (models) {
         Beer.belongsTo(models.Brewery,{

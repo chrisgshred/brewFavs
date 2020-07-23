@@ -24,7 +24,8 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
         },
-    });
+    },
+    {timestamps: false});
 
     Brewery.associate = function (models) {
         Brewery.hasMany(models.Beer,{
