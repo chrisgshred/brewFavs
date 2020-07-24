@@ -1,4 +1,5 @@
 const db = require("../models");
+sequelize = require("sequelize");
 
 module.exports = function (app) {
     app.post("/api/beer", (req, res) => {
@@ -16,18 +17,19 @@ module.exports = function (app) {
     });
 
     app.get("/api/beer", (req, res) => {
-        let lookupValue = req.body.name.toLowerCase();
-
         db.Beer.findAll({
             limit: 10,
             where: {
-                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + lookupValue + '%')
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.body.name.toLowerCase() + '%'),
+                style: sequelize.where(sequelize.fn('LOWER', sequelize.col('style')), 'LIKE', '%' + req.body.style.toLowerCase() + '%'),
+                ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.body.ounces.toLowerCase() + '%')
             }
         }).then((dbPost) => {
             console.log(dbPost);
-            res.redirect(307, "/profile");
+            res.json(dbPost);
         }).catch(err => {
             res.status(401).json(err);
         });
+
     });
 }
