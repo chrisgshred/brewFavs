@@ -4,7 +4,7 @@ const path = require("path");
 
 const seedFileDir = path.join(__dirname, "../datasources/");
 
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
   seedBreweries().then((breweries) => {
     process.exit(0);
   }).catch(error => {
