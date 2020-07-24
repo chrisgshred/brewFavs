@@ -8,11 +8,11 @@ module.exports = function (sequelize, DataTypes) {
             unique: true,
         },
         rowNo: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             defaultValue: 0
         },
         abv: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.INTEGER,
             defaultValue: 0
         },
         ibu: {
@@ -20,8 +20,7 @@ module.exports = function (sequelize, DataTypes) {
             defaultValue: 0
         },
         beerId: {
-            type: DataTypes.INTEGER,
-            unique: true,
+            type: DataTypes.STRING,
             defaultValue: 0
         },
         name: {
@@ -32,11 +31,7 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         breweryId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'Breweries',
-                key: 'breweryId'
-            },
+            type: DataTypes.STRING,
             defaultValue: 0 
         },
         ounces: {
@@ -47,10 +42,10 @@ module.exports = function (sequelize, DataTypes) {
     {timestamps: false}
     );
 
-    Beer.associate = function (models) {
-        Beer.belongsTo(models.Brewery,{
-          foreignKey: "breweryId"
-        });
-      };
+    // Beer.associate = function (models) {
+    //     Beer.belongsTo(models.Brewery,{
+    //       foreignKey: "breweryId"
+    //     });
+    //   };
     return Beer;
 };
