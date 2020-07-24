@@ -17,51 +17,19 @@ module.exports = function (app) {
     });
 
     app.get("/api/beer", (req, res) => {
-        let lookupValue;
+        db.Beer.findAll({
+            limit: 10,
+            where: {
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.body.name.toLowerCase() + '%'),
+                style: sequelize.where(sequelize.fn('LOWER', sequelize.col('style')), 'LIKE', '%' + req.body.style.toLowerCase() + '%'),
+                ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.body.ounces.toLowerCase() + '%')
+            }
+        }).then((dbPost) => {
+            console.log(dbPost);
+            res.json(dbPost);
+        }).catch(err => {
+            res.status(401).json(err);
+        });
 
-        if (req.body.name && req.body.name !== "") {
-            lookupValue = req.body.name.toLowerCase();
-
-            db.Beer.findAll({
-                limit: 10,
-                where: {
-                    name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + lookupValue + '%')
-                }
-            }).then((dbPost) => {
-                console.log(dbPost);
-                res.json(dbPost);
-            }).catch(err => {
-                res.status(401).json(err);
-            });
-        }
-        else if (req.body.style && req.body.style !== "") {
-            lookupValue = req.body.style.toLowerCase();
-
-            db.Beer.findAll({
-                limit: 10,
-                where: {
-                    style: sequelize.where(sequelize.fn('LOWER', sequelize.col('style')), 'LIKE', '%' + lookupValue + '%')
-                }
-            }).then((dbPost) => {
-                console.log(dbPost);
-                res.json(dbPost);
-            }).catch(err => {
-                res.status(401).json(err);
-            });
-        } else if (req.body.ounces && req.body.ounces !== "") {
-            lookupValue = req.body.ounces.toLowerCase();
-
-            db.Beer.findAll({
-                limit: 10,
-                where: {
-                    ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + lookupValue + '%')
-                }
-            }).then((dbPost) => {
-                console.log(dbPost);
-                res.json(dbPost);
-            }).catch(err => {
-                res.status(401).json(err);
-            });
-        }
     });
 }
