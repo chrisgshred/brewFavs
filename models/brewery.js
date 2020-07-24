@@ -14,7 +14,6 @@ module.exports = function (sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique : true
         },
         city: {
             type: DataTypes.STRING,
@@ -27,10 +26,10 @@ module.exports = function (sequelize, DataTypes) {
     },
     {timestamps: false});
 
-    Brewery.associate = function (models) {
+   /*  Brewery.associate = function (models) {
         Brewery.hasMany(models.Beer,{
           foreignKey:"beerId"
         });
-      };
+      }; */
     return Brewery;
 };
