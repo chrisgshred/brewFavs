@@ -1,0 +1,23 @@
+body {
+    background-image: linear-gradient(#FFFFFF, #FEFEC4, #FEF7A2);
+    min-height: 100vh;
+}
+
+footer {
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+.fa {
+    padding-left: 10px;
+}
+
+.row1 {
+    text-align: center;
+}
+
+#brews {
+    font-size: small;
+    text-align: center;
+}

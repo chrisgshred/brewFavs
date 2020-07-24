@@ -5,25 +5,80 @@ const path = require("path");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-  app.get("/", (req, res) => {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
-  });
+    app.get("/", (req, res) => {
+        // If the user already has an account send them to the members page
+        if (req.user) {
+            res.redirect("/members");
+        }
+        res.sendFile(path.join(__dirname, "../public/signup.html"));
+    });
 
-  app.get("/login", (req, res) => {
-    // If the user already has an account send them to the members page
-    if (req.user) {
-      res.redirect("/members");
-    }
-    res.sendFile(path.join(__dirname, "../public/login.html"));
-  });
+    app.get("/login", (req, res) => {
+        // If the user already has an account send them to the members page
+        if (req.user) {
+            res.redirect("/members");
+        }
+        res.sendFile(path.join(__dirname, "../public/login.html"));
+    });
 
-  // Here we've add our isAuthenticated middleware to this route.
-  // If a user who is not logged in tries to access this route they will be redirected to the signup page
-  app.get("/members", isAuthenticated, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-  });
+    // Here we've add our isAuthenticated middleware to this route.
+    // If a user who is not logged in tries to access this route they will be redirected to the signup page
+    app.get("/members", isAuthenticated, (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/members.html"));
+    });
+
+    app.get("/user", (req, res) => {
+        // you have to make a call to your database to grab the data and then render it to the page
+        const userEmail = { email: "diana@gmail.com" }
+        const storeData = [{
+                name: "Anheuser-Busch",
+                city: "St Louis",
+                state: "Missouri"
+            },
+            {
+                name: "Fall Brewing Company",
+                city: "San Diego",
+                state: "California"
+            }
+        ]
+        const beerData = [{
+                name: "Budlight",
+                style: "Lager - American Light",
+                ounces: "12"
+            },
+            {
+                name: "PBR",
+                style: "Lager - American Light",
+                ounces: "12"
+            }
+        ]
+
+        const hdlbrsObject = {
+            locationData: storeData,
+            productData: beerData,
+        }
+        res.render("user", hdlbrsObject);
+    });
+
+    app.get("/search", (req, res) => {
+        const searchResults = [{
+                name: "Pabst Blue Ribbon",
+                style: "Lager",
+                ounces: "12"
+            },
+            {
+                name: "Pliny the Elder",
+                style: "DIPA",
+                ounces: "16"
+            }
+        ]
+
+        const hdlbrsObject = {
+            searchData: searchResults
+        }
+        res.render("search", hdlbrsObject);
+    });
+    app.get("/add", (req, res) => {
+        res.render("add", {});
+    });
 };
