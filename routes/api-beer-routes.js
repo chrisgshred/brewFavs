@@ -4,8 +4,6 @@ sequelize = require("sequelize");
 module.exports = function (app) {
     app.post("/api/beer", (req, res) => {
         db.Beer.create({
-            abv: req.body.abv,
-            ibu: req.body.ibu,
             name: req.body.name,
             style: req.body.style,
             ounces: req.body.ounces
@@ -20,9 +18,9 @@ module.exports = function (app) {
         db.Beer.findAll({
             limit: 10,
             where: {
-                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.body.name.toLowerCase() + '%'),
-                style: sequelize.where(sequelize.fn('LOWER', sequelize.col('style')), 'LIKE', '%' + req.body.style.toLowerCase() + '%'),
-                ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.body.ounces.toLowerCase() + '%')
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.query.name.toLowerCase() + '%'),
+                style: sequelize.where(sequelize.fn('LOWER', sequelize.col('style')), 'LIKE', '%' + req.query.style.toLowerCase() + '%'),
+                ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.query.ounces.toLowerCase() + '%')
             }
         }).then((dbPost) => {
             console.log(dbPost);
