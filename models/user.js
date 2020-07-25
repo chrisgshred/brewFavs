@@ -39,13 +39,22 @@ module.exports = function(sequelize, DataTypes) {
     );
   });
 
-  User.associate = function (models) {
-    User.belongsTo(models.UserFavBrewery, {
-        foreignKey: "id",
-        constraints: false, 
-        allowNull:true, 
-        defaultValue:null
+  User.associate = (models) => {
+    User.belongsToMany(models.Beer, {
+      through: "UserFavBeer",
+      constraints: false
     });
-};
+    User.belongsToMany(models.Brewery, {
+      through: "UserFavBrewery",
+      constraints: false
+    });
+  };
+
+ /*  User.associate = (models) => {
+    User.belongsToMany(models.Brewery, {
+      through: "UserFavBrewery",
+      constraints: false
+    });
+  }; */
   return User;
 };

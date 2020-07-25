@@ -31,13 +31,11 @@ module.exports = function (sequelize, DataTypes) {
           foreignKey:"beerId"
         });
       }; */
-      Brewery.associate = function (models) {
-        Brewery.belongsTo(models.UserFavBrewery, {
-            foreignKey: "id",
-            constraints: false, 
-            allowNull:true, 
-            defaultValue:null
+      Brewery.associate = (models) => {
+        Brewery.belongsToMany(models.User, {
+          through: "UserFavBrewery",
+          constraints: false
         });
-    };
+      };
     return Brewery;
 };
