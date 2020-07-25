@@ -38,5 +38,14 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
+  User.associate = function (models) {
+    User.belongsTo(models.UserFavBrewery, {
+        foreignKey: "id",
+        constraints: false, 
+        allowNull:true, 
+        defaultValue:null
+    });
+};
   return User;
 };

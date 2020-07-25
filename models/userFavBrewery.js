@@ -15,11 +15,13 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     UserFavBrewery.associate = function (models) {
-        UserFavBrewery.hasMany(models.Brewery, {
+        UserFavBrewery.belongsTo(models.Brewery, {
             foreignKey: "id",
-            constraints: false, allowNull:true, defaultValue:null
+            constraints: false, 
+            allowNull:true, 
+            defaultValue:null
         });
-        UserFavBrewery.hasMany(models.User, {
+        UserFavBrewery.belongsTo(models.User, {
             foreignKey: "userId",
             //added the below code to avoid cyclic dependecy error
             constraints: false, 

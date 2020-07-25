@@ -1,4 +1,5 @@
 const db = require("../models");
+const { Op } = require("sequelize");
 
 module.exports = function (app) {
     app.post("/api/brewery", (req, res) => {
@@ -23,6 +24,66 @@ module.exports = function (app) {
             }
         }).then((dbPost) => {
             console.log(dbPost);
+            res.redirect(307, "/profile");
+        }).catch(err => {
+            res.status(401).json(err);
+        });
+    });
+
+    app.get("/api/brewery/favorite/:userId", (req, res) => {
+
+        db.UserFavBrewery.findAll({
+            include: [db.User, db.Brewery],
+            where: {
+                userId: parseInt(req.params.userId)
+            }
+        }).then((dbPost) => {
+
+            let breweryArr = [];
+            for (let index = 0; index < dbPost.length; index++) {
+
+                const dbBreweries = dbPost[index].Brewery;
+
+                let breweryObj = {
+                    name: dbBreweries.name,
+                    state: dbBreweries.state,
+                    city: dbBreweries.city
+                }
+                breweryArr.push(breweryObj)
+
+            }
+
+            const responseObj = {
+                user: dbPost[0].User.email,
+                breweries: breweryArr
+            }
+
+            console.log(responseObj)
+            res.redirect(307, "/profile");
+        }).catch(err => {
+            res.status(401).json(err);
+        });
+    });
+
+    app.delete("/api/brewery/favorite/:uid/:bid", (req, res) => {
+        db.UserFavBrewery.destroy({
+            where: {
+                [Op.and]: [
+                    { userId: req.params.uid },
+                    { breweryId: req.params.bid }
+                ]
+            }
+        }).then((result) => {
+            console.log(result);
+            res.redirect(307, "/profile");
+        }).catch(err => {
+            res.status(401).json(err);
+        });
+    });
+
+    app.post("/api/brewery/favorite", (req, res) => {
+        db.UserFavBrewery.create(req.body).then((result) => {
+            console.log(result);
             res.redirect(307, "/profile");
         }).catch(err => {
             res.status(401).json(err);
