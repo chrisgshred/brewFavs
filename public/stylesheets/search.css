@@ -2,3 +2,9 @@ body {
     background-image: linear-gradient(#FFFFFF, #FEFEC4, #FEF7A2);
     min-height: 100vh;
 }
+
+footer {
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 100px;
+}
