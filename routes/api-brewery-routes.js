@@ -32,34 +32,32 @@ module.exports = function (app) {
 
     app.get("/api/brewery/favorite/:userId", (req, res) => {
 
-        db.UserFavBrewery.findAll({
-            include: [db.User, db.Brewery],
+        db.User.findAll({
+            include: db.Brewery,
             where: {
                 userId: parseInt(req.params.userId)
             }
         }).then((dbPost) => {
-
             let breweryArr = [];
-            for (let index = 0; index < dbPost.length; index++) {
-
-                const dbBreweries = dbPost[index].Brewery;
-
+          const dbBreweries = dbPost[0].Breweries;
+        //  console.log("-----------------------")
+        //  console.log(dbBreweries)
+            for (let i = 0; i < dbBreweries.length; i++) {
                 let breweryObj = {
-                    name: dbBreweries.name,
-                    state: dbBreweries.state,
-                    city: dbBreweries.city
+                    name: dbBreweries[i].name,
+                    state: dbBreweries[i].state,
+                    city: dbBreweries[i].city
                 }
-                breweryArr.push(breweryObj)
+                breweryArr.push(breweryObj);
 
-            }
+            } 
 
             const responseObj = {
-                user: dbPost[0].User.email,
+                user: dbPost[0].email,
                 breweries: breweryArr
             }
-
-            console.log(responseObj)
-            res.redirect(307, "/profile");
+            console.log(responseObj);
+            res.json(responseObj);
         }).catch(err => {
             res.status(401).json(err);
         });
@@ -69,8 +67,8 @@ module.exports = function (app) {
         db.UserFavBrewery.destroy({
             where: {
                 [Op.and]: [
-                    { userId: req.params.uid },
-                    { breweryId: req.params.bid }
+                    { UserUserId: req.params.uid },
+                    { BreweryId: req.params.bid }
                 ]
             }
         }).then((result) => {
