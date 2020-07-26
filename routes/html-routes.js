@@ -4,7 +4,7 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function (app) {
+module.exports = function(app) {
     app.get("/", (req, res) => {
         // If the user already has an account send them to the members page
         if (req.user) {
@@ -31,31 +31,31 @@ module.exports = function (app) {
         // you have to make a call to your database to grab the data and then render it to the page
 
         const userData = [{
-            email: "chrisg@gmail.com",
-            brews: "favs",
-            breweries: "FAVS"
+            email: "",
+            brews: "",
+            breweries: ""
         }]
         const storeData = [{
-            name: "Anheuser-Busch",
-            city: "St Louis",
-            state: "Missouri"
-        },
-        {
-            name: "Fall Brewing Company",
-            city: "San Diego",
-            state: "California"
-        }
+                name: "",
+                city: "",
+                state: ""
+            },
+            {
+                name: "",
+                city: "",
+                state: ""
+            }
         ]
         const beerData = [{
-            name: "Budlight",
-            style: "Lager - American Light",
-            ounces: "12"
-        },
-        {
-            name: "PBR",
-            style: "Lager - American Light",
-            ounces: "12"
-        }
+                name: "",
+                style: "",
+                ounces: ""
+            },
+            {
+                name: "",
+                style: "",
+                ounces: ""
+            }
         ]
 
         const hdlbrsObject = {
