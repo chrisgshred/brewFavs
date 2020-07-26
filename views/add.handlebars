@@ -11,7 +11,7 @@
       <div class="navbar-nav">
         <a class="nav-item nav-link" href="/user">User Profile</a>
         <a class="nav-item nav-link" href="/search">Search</a>
-        <a class="nav-item nav-link" href="/login">Logout</a>
+        <a class="nav-item nav-link" href="/logout">Logout</a>
       </div>
     </div>
   </nav>
@@ -37,27 +37,19 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-      <form>
+      <form id="beerAddForm">
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">Beer</label>
-            <input type="text" class="form-control" id="validationDefault01">
+            <input type="text" class="form-control" id="nameField">
           </div>
-          <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02">
-              <option selected>Brew Style</option>
-              <option value="1">IPA</option>
-              <option value="2">Lager</option>
-              <option value="3">Stout</option>
-            </select>
+          <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Style</label>
+            <input type="text" class="form-control" id="styleSelect">
           </div>
-          <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02">
-              <option selected>Ounces</option>
-              <option value="1">1.1</option>
-              <option value="2">5.5</option>
-              <option value="3">10.5</option>
-            </select>
+          <div class="col-md-4 mb-3">
+            <label for="validationDefault01">Ounces</label>
+            <input type="text" class="form-control" id="ouncesSelect">
           </div>
         </div>
         <button style='font-size:16px'>Add Beer<i class='fas fa-beer'></i></button>
@@ -67,19 +59,19 @@
 
     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
-      <form>
+      <form id="brewerySearchForm">
         <div class="form-row">
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">Brewery</label>
-            <input type="text" class="form-control" id="validationDefault01">
+            <input type="text" class="form-control" id="breweryName">
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">City</label>
-            <input type="text" class="form-control" id="validationDefault01">
+            <input type="text" class="form-control" id="breweryCity">
           </div>
           <div class="col-md-4 mb-3">
             <label for="validationDefault01">State</label>
-            <input type="text" class="form-control" id="validationDefault01">
+            <input type="text" class="form-control" id="breweryState">
           </div>
         </div>
         <button style='font-size:16px'>Add Brewery <i class='fa fa-home'></i></button>
@@ -88,8 +80,6 @@
     </div>
   </div>
   <br>
-  
-
-
-
 </div>
+
+<script type="text/javascript" src="/js/add.js"></script>
