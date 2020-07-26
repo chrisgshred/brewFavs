@@ -30,7 +30,6 @@ module.exports = function (app) {
     });
 
     app.get("/api/brewery/favorite/:userId", (req, res) => {
-        console.log("-----------IN GET route------------")
         db.User.findAll({
             include: db.Brewery,
             where: {
@@ -40,8 +39,6 @@ module.exports = function (app) {
             let breweryArr = [];
             console.log(dbPost)
           const dbBreweries = dbPost[0].Breweries;
-           // console.log("-----------------------")
-          //  console.log(dbBreweries)
             for (let i = 0; i < dbBreweries.length; i++) {
                 let breweryObj = {
                     id: dbBreweries[i].id,
@@ -52,15 +49,7 @@ module.exports = function (app) {
                 breweryArr.push(breweryObj);
 
             } 
-
-            const responseObj = {
-              // email : dbPost[0].email,
-              //  userId : dbPost[0].userId,
-                breweries: breweryArr
-            }
-            console.log(responseObj);
-           // res.json(responseObj);
-           res.render("user",responseObj)
+           res.json(breweryArr)
         }).catch(err => {
             res.status(401).json(err);
         });

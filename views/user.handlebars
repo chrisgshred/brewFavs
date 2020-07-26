@@ -24,7 +24,7 @@
       {{#each userDetails }}
       <div>
         <br>
-          <p> <i class='fa fa-envelope' style='font-size:24px'></i> {{email}}</p>
+          <p> <i class='fa fa-envelope' style='font-size:24px'></i> : {{email}}</p>
           <p> <i class='fas fa-beer' style='font-size:24px'></i> : {{brews}}</p>
           <p> <i class='fa fa-home' style='font-size:24px'></i> : {{breweries}}</p>
       </div>
@@ -44,16 +44,6 @@
               <div class="card-body">
                 <h5 class="card-title">My Favorite Beers</h5>
                 <h6 class="card-subtitle mb-2 text-muted" id="listresults">
-                <!--  {{#each beers }}
-                  <div>
-                    <br>
-                    <ul>
-                      <li> Name : {{name}}</li>
-                      <p> Style : {{style}}</p>
-                      <p> Ounces : {{ounces}}</p>
-                  </div>
-                  {{/each}}
-                  </ul> -->
                 </h6>
               </div>
             </div>
@@ -72,15 +62,7 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">My Favorite Breweries</h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  {{#each breweries }}
-                  <div>
-                    <br>
-                      <li>Name : {{name}}</li>
-                      <p>state : {{state}}</p>
-                      <p>city : {{city}} </p>
-                  </div>
-                  {{/each}}
+                <h6 class="card-subtitle mb-2 text-muted" id="breweryList">
                 </h6>
               </div>
             </div>
@@ -90,3 +72,4 @@
     </div>
   </div>
 </div>
+<script src="/js/user.js"></script>

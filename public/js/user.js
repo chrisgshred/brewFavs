@@ -5,36 +5,25 @@ $(document).ready(() => {
     const styleInput = $("#styleSelect");
     const ouncesInput = $("#ouncesSelect");
 
-   /*  $.get("/api/user_data").then(data => {
+    $.get("/api/user_data").then(data => {
         // $(".member-name").text(data.email);
         const userId = data.id;
-        console.log("**********userId***********", data.id)
-        console.log("route url-/api/beer/favorite/" + userId);
+
         $.get("/api/beer/favorite/" + userId).then((beers) => {
             // dynamically render beers in the results area
             renderBeers(beers);
         }).catch(err => {
             console.log(err);
         });
-    }); */
 
-    // When the form is submitted, we validate there's an email and password entered
-    /* beerSearchForm.on("submit", event => {
-        event.preventDefault();
-        const searchData = {
-            name: nameInput.val().trim(),
-            style: styleInput.val().trim(),
-            ounces: ouncesInput.val().trim()
-        };
-
-        // Add the beers to the search array
-        $.get("/api/beer", searchData).then((beers) => {
+        // If we have an email and password we run the loginUser function and clear the form
+        $.get("/api/brewery/favorite/"+userId).then((breweries) => {
             // dynamically render beers in the results area
-            renderBeers(beers);
+            renderBreweries(breweries);
         }).catch(err => {
             console.log(err);
         });
-    }); */
+    });
 
     function renderBeers(beers) {
         // dynamically render beers in the results area
@@ -51,30 +40,6 @@ $(document).ready(() => {
         $("#listresults").html(beerHtml.join(""));
     }
 
-    // Getting references to our form and inputs
-    const brewSearchForm = $("#brewerySearchForm");
-    const brewNameInput = $("#breweryName");
-    const brewCityInput = $("#breweryCity");
-    const brewStateInput = $("#breweryState");
-
-    // When the form is submitted, we validate there's an email and password entered
-    brewSearchForm.on("submit", event => {
-        event.preventDefault();
-        const searchData = {
-            name: brewNameInput.val().trim(),
-            city: brewCityInput.val().trim(),
-            state: brewStateInput.val().trim()
-        };
-
-        // If we have an email and password we run the loginUser function and clear the form
-        $.get("/api/brewery", searchData).then((breweries) => {
-            // dynamically render beers in the results area
-            renderBreweries(breweries);
-        }).catch(err => {
-            console.log(err);
-        });
-    });
-
     function renderBreweries(breweries) {
         // dynamically render breweries in the results area
         const breweryHtml = breweries.map(brewery => {
@@ -87,6 +52,6 @@ $(document).ready(() => {
           </div>`
             return html;
         });
-        $("#listresults").html(breweryHtml.join(""));
+        $("#breweryList").html(breweryHtml.join(""));
     }
 });
