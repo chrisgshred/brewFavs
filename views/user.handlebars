@@ -44,7 +44,7 @@
               <div class="card-body">
                 <h5 class="card-title">My Favorite Beers</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  {{#each productData }}
+                  {{#each beers }}
                   <div>
                     <br>
                     <ul>
@@ -73,12 +73,12 @@
               <div class="card-body">
                 <h5 class="card-title">My Favorite Breweries</h5>
                 <h6 class="card-subtitle mb-2 text-muted">
-                  {{#each locationData }}
+                  {{#each breweries }}
                   <div>
                     <br>
                       <li>Name : {{name}}</li>
-                      <p>Location : {{city}}</p>
-                      <p>Rating : {{state}} </p>
+                      <p>state : {{state}}</p>
+                      <p>city : {{city}} </p>
                   </div>
                   {{/each}}
                 </h6>

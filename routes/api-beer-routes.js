@@ -42,7 +42,7 @@ module.exports = function (app) {
                 userId: parseInt(req.params.userId)
             }
         }).then((dbPost) => {
-            console.log("dbPost-----");
+           
            
             let beerArr = [];
             const dbBeers = dbPost[0].Beers;
@@ -50,6 +50,7 @@ module.exports = function (app) {
             console.log(dbBeers);
             for (let i = 0; i < dbBeers.length; i++) {
                 let beerObj = {
+                    id: dbBeers[i].id,
                     name: dbBeers[i].name,
                     style: dbBeers[i].style,
                     ounces: dbBeers[i].ounces
@@ -59,11 +60,13 @@ module.exports = function (app) {
             } 
 
             const responseObj = {
-                user: dbPost[0].email,
+              //  email: dbPost[0].email,
+              //  userId : dbPost[0].userId,
                 beers: beerArr
             }
             console.log(responseObj);
-            res.json(responseObj);
+           // res.json(responseObj);
+           res.render("user",responseObj)
         }).catch(err => {
             res.status(401).json(err);
         });
