@@ -2,3 +2,8 @@ body {
     background-image: linear-gradient(#FFFFFF, #FEFEC4, #FEF7A2);
     min-height: 100vh;
 }
+
+header {
+    text-align: center;
+    font-size: 100px;
+}
