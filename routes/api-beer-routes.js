@@ -26,9 +26,9 @@ module.exports = function (app) {
         }).then((dbPost) => {
             // console.log(dbPost);
             jsonDb = dbPost.map(post => post.toJSON());
-            console.log(jsonDb);
+            // console.log(jsonDb);
 
-            res.render("search", {searchData: jsonDb});
+            res.json(jsonDb);
         }).catch(err => {
             res.status(401).json(err);
         });

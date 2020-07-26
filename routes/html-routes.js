@@ -67,22 +67,8 @@ module.exports = function(app) {
     });
 
     app.get("/search", (req, res) => {
-        const searchResults = [{
-                name: "Pabst Blue Ribbon",
-                style: "Lager",
-                ounces: "12"
-            },
-            {
-                name: "Pliny the Elder",
-                style: "DIPA",
-                ounces: "16"
-            }
-        ]
-
-        const hdlbrsObject = {
-            searchData: searchResults
-        }
-        res.render("search", hdlbrsObject);
+        // search results are rendered client side for this search view
+        res.render("search");
     });
     app.get("/add", (req, res) => {
         res.render("add", {});

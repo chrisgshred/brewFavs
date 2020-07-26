@@ -100,14 +100,9 @@
         <div class="card-body">
           <h5 class="card-title">Search Results</h5>
           <h6 class="card-subtitle mb-2 text-muted">
-            {{#each searchData }}
             <div id="listresults">
-              <p> Name : {{name}}</p>
-              <p> Style : {{style}}</p>
-              <p> Ounces : {{ounces}}</p>
-              <button style='font-size:12px' class="btn btn-success">Fav <i class='fas fa-beer'></i></button>
+              {{!-- results are populated via ajax/client rendering --}}
             </div>
-            {{/each}}
           </h6>
         </div>
       </div>
