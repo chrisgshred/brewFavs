@@ -20,69 +20,73 @@
 <div class="container">
   <div class="row1">
     <div class="icon">
-          <h5>My Account</h5>
-          <h6>{{userEmail}}</h6>
-        </div>
-      </div>
-    
-  <br>
-  <div class="row ">
-   <div  class="col-6 d-flex justify-content-center" >Brews
-     <i class='fa fa-beer' style='font-size:20px'></i>
-     
-      <div class="container">
-<div class="row" id="fav-beer">
-    <div class="userstats col-12 ">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">My Favorite Beers</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-            {{#each productData }}
+      <h5>My Account</h5>
+      {{#each userDetails }}
       <div>
         <br>
-        <ul>
-        <li> Name : {{name}}</li>
-        <p> Style : {{style}}</p>
-        <p> Ounces : {{ounces}}</p>
-            </div>
-            {{/each}}
-            </ul>
-          </h6>
-        </div>
+          <p>  {{email}}</p>
+          <p> <i class='fas fa-beer' style='font-size:24px'></i> : {{brews}}</p>
+          <p> <i class='fa fa-home' style='font-size:24px'></i> : {{breweries}}</p>
       </div>
+      {{/each}}
     </div>
   </div>
-      </div>
+
   <br>
+  <div class="row ">
+    <div class="col-6 d-flex justify-content-center">Brews
+      <i class='fa fa-beer' style='font-size:20px'></i>
+
+      <div class="container">
+        <div class="row" id="fav-beer">
+          <div class="userstats col-12 ">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">My Favorite Beers</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  {{#each productData }}
+                  <div>
+                    <br>
+                    <ul>
+                      <li> Name : {{name}}</li>
+                      <p> Style : {{style}}</p>
+                      <p> Ounces : {{ounces}}</p>
+                  </div>
+                  {{/each}}
+                  </ul>
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
 
 
     </div>
     <div class="col-6 d-flex justify-content-center">Breweries
       <i class="fa fa-home" style="font-size:20px"></i>
       <div class="container">
-<div class="row" id="fav-brewery">
-    <div class="userstats col-12 ">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">My Favorite Breweries</h5>
-          <h6 class="card-subtitle mb-2 text-muted">
-      {{#each locationData }}
-      <div>
-        <br>
-        <ul>
-        <li>Name : {{name}}</li>
-        <p>Location : {{city}}</p>
-        <p>Rating : {{state}} </p>
-      </div>
-      {{/each}}
-            </ul>
-          </h6>
+        <div class="row" id="fav-brewery">
+          <div class="userstats col-12 ">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">My Favorite Breweries</h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                  {{#each locationData }}
+                  <div>
+                    <br>
+                      <li>Name : {{name}}</li>
+                      <p>Location : {{city}}</p>
+                      <p>Rating : {{state}} </p>
+                  </div>
+                  {{/each}}
+                </h6>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-      </div>
-    </div>
-  </div>
 </div>
-
