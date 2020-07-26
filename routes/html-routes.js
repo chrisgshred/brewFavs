@@ -4,7 +4,7 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+module.exports = function (app) {
     app.get("/", (req, res) => {
         // If the user already has an account send them to the members page
         if (req.user) {
@@ -36,26 +36,26 @@ module.exports = function(app) {
             breweries: "FAVS"
         }]
         const storeData = [{
-                name: "Anheuser-Busch",
-                city: "St Louis",
-                state: "Missouri"
-            },
-            {
-                name: "Fall Brewing Company",
-                city: "San Diego",
-                state: "California"
-            }
+            name: "Anheuser-Busch",
+            city: "St Louis",
+            state: "Missouri"
+        },
+        {
+            name: "Fall Brewing Company",
+            city: "San Diego",
+            state: "California"
+        }
         ]
         const beerData = [{
-                name: "Budlight",
-                style: "Lager - American Light",
-                ounces: "12"
-            },
-            {
-                name: "PBR",
-                style: "Lager - American Light",
-                ounces: "12"
-            }
+            name: "Budlight",
+            style: "Lager - American Light",
+            ounces: "12"
+        },
+        {
+            name: "PBR",
+            style: "Lager - American Light",
+            ounces: "12"
+        }
         ]
 
         const hdlbrsObject = {
@@ -66,25 +66,13 @@ module.exports = function(app) {
         res.render("user", hdlbrsObject);
     });
 
-    app.get("/search", (req, res) => {
-        const searchResults = [{
-                name: "Pabst Blue Ribbon",
-                style: "Lager",
-                ounces: "12"
-            },
-            {
-                name: "Pliny the Elder",
-                style: "DIPA",
-                ounces: "16"
-            }
-        ]
+    //search results are rendered client side
 
-        const hdlbrsObject = {
-            searchData: searchResults
-        }
-        res.render("search", hdlbrsObject);
+    app.get("/search", (req, res) => {
+        res.render("search");
     });
+
     app.get("/add", (req, res) => {
-        res.render("add", {});
+        res.render("add");
     });
 };
