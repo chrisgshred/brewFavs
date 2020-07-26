@@ -15,8 +15,8 @@ $(document).ready(() => {
         };
 
         // Add the beers to the search array
-        $.get("/api/beer", searchData).then((req, res) => {
-            console.log(res);
+        $.get("/api/beer", searchData).then((beers, res) => {
+            // console.log(beers);
             // res.render("search", res.body);
         }).catch(err => {
             console.log(err);

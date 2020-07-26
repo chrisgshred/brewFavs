@@ -24,8 +24,11 @@ module.exports = function (app) {
                 ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.query.ounces.toLowerCase() + '%')
             }
         }).then((dbPost) => {
-            console.log(dbPost);
-            res.json(dbPost);
+            // console.log(dbPost);
+            jsonDb = dbPost.map(post => post.toJSON());
+            console.log(jsonDb);
+
+            res.render("search", {searchData: jsonDb});
         }).catch(err => {
             res.status(401).json(err);
         });
