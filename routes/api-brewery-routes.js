@@ -18,12 +18,11 @@ module.exports = function (app) {
         db.Brewery.findAll({
             limit: 10,
             where: {
-                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.body.name.toLowerCase() + '%'),
-                city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + req.body.city.toLowerCase() + '%'),
-                state: sequelize.where(sequelize.fn('LOWER', sequelize.col('state')), 'LIKE', '%' + req.body.state.toLowerCase() + '%')
+                name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.query.name.toLowerCase() + '%'),
+                city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + req.query.city.toLowerCase() + '%'),
+                state: sequelize.where(sequelize.fn('LOWER', sequelize.col('state')), 'LIKE', '%' + req.query.state.toLowerCase() + '%')
             }
         }).then((dbPost) => {
-            console.log(dbPost);
             res.json(dbPost);
         }).catch(err => {
             res.status(401).json(err);
