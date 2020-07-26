@@ -38,5 +38,23 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+
+  User.associate = (models) => {
+    User.belongsToMany(models.Beer, {
+      through: "UserFavBeer",
+      constraints: false
+    });
+    User.belongsToMany(models.Brewery, {
+      through: "UserFavBrewery",
+      constraints: false
+    });
+  };
+
+ /*  User.associate = (models) => {
+    User.belongsToMany(models.Brewery, {
+      through: "UserFavBrewery",
+      constraints: false
+    });
+  }; */
   return User;
 };

@@ -47,5 +47,11 @@ module.exports = function (sequelize, DataTypes) {
     //       foreignKey: "breweryId"
     //     });
     //   };
+    Beer.associate = (models) => {
+        Beer.belongsToMany(models.User, {
+          through: "UserFavBeer",
+          constraints: false
+        });
+      };
     return Beer;
 };
