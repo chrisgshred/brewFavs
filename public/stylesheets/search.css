@@ -8,3 +8,7 @@ footer {
     min-height: 100vh;
     padding-top: 100px;
 }
+
+#map {
+    height: 20em;
+}
