@@ -102,12 +102,7 @@
           <h5 class="card-title">Search Results</h5>
           <h6 class="card-subtitle mb-2 text-muted">
             <div id="listresults">
-            {{#each searchData }}
-              <p> Name : {{name}}</p>
-              <p> Style : {{style}}</p>
-              <p> Ounces : {{ounces}}</p>
-              <button style='font-size:12px' class="btn btn-success">Fav <i class='fas fa-beer'></i></button>
-            {{/each}}
+              {{!-- results are populated via ajax/client rendering --}}
             </div>
           </h6>
         </div>

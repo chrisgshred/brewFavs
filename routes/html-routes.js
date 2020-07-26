@@ -66,11 +66,7 @@ module.exports = function (app) {
         res.render("user", hdlbrsObject);
     });
 
-    //search results are rendered client side
 
-    app.get("/search", (req, res) => {
-        res.render("search");
-    });
 
     app.get("/add", (req, res) => {
         res.render("add");
