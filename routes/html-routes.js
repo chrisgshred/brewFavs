@@ -29,7 +29,12 @@ module.exports = function(app) {
 
     app.get("/user", (req, res) => {
         // you have to make a call to your database to grab the data and then render it to the page
-        const userEmail = { email: "diana@gmail.com" }
+
+        const userData = [{
+            email: "chrisg@gmail.com",
+            brews: "favs",
+            breweries: "FAVS"
+        }]
         const storeData = [{
                 name: "Anheuser-Busch",
                 city: "St Louis",
@@ -56,6 +61,7 @@ module.exports = function(app) {
         const hdlbrsObject = {
             locationData: storeData,
             productData: beerData,
+            userDetails: userData,
         }
         res.render("user", hdlbrsObject);
     });
