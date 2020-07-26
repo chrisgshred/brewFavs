@@ -67,6 +67,10 @@ module.exports = function (app) {
     });
 
 
+    app.get("/search", (req, res) => {
+        // search results are rendered client side for this search view
+        res.render("search");
+    });
 
     app.get("/add", (req, res) => {
         res.render("add");
