@@ -36,7 +36,8 @@ module.exports = function (app) {
     });
 
     app.get("/api/beer/favorite/:userId", (req, res) => {
-
+        console.log("------Inside beer route----------");
+        console.log("user id=",req.params.userId)
         db.User.findAll({
             include: db.Beer,
             where: {

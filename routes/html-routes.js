@@ -30,7 +30,7 @@ module.exports = function (app) {
     app.get("/user", (req, res) => {
         // you have to make a call to your database to grab the data and then render it to the page
 
-        const userData = [{
+      /*   const userData = [{
             email: "chrisg@gmail.com",
             brews: "favs",
             breweries: "FAVS"
@@ -63,9 +63,32 @@ module.exports = function (app) {
             productData: beerData,
             userDetails: userData,
         }
-        res.render("user", hdlbrsObject);
+        res.render("user", hdlbrsObject); */
+        console.log("**********req.user***********", req.user)
+        const userId = req.user.userId;
+        app.get("/api/beer/favorite/" + userId).then((beers) => {
+            // dynamically render beers in the results area
+            renderBeers(beers);
+        }).catch(err => {
+            console.log(err);
+        });
+        res.render("user");
     });
 
+    function renderBeers(beers) {
+        // dynamically render beers in the results area
+        const beerHtml = beers.map(beer => {
+            const { name, style, ounces, id } = beer;
+            const html = `<div>
+            <p> Name : ${name}</p>
+            <p> Style : ${style}</p>
+            <p> Ounces : ${ounces}</p>
+            <button style='font-size:12px' class="btn btn-success btn-fav-beer" value="${id}">Fav <i class='fas fa-beer'></i></button>
+          </div>`
+            return html;
+        });
+        $("#listresults").html(beerHtml.join(""));
+    }
 
     app.get("/search", (req, res) => {
         // search results are rendered client side for this search view
