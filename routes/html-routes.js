@@ -4,7 +4,7 @@ const path = require("path");
 // Requiring our custom middleware for checking if a user is logged in
 const isAuthenticated = require("../config/middleware/isAuthenticated");
 
-module.exports = function(app) {
+module.exports = function (app) {
     app.get("/", (req, res) => {
         // If the user already has an account send them to the members page
         if (req.user) {
@@ -36,26 +36,26 @@ module.exports = function(app) {
             breweries: "FAVS"
         }]
         const storeData = [{
-                name: "Anheuser-Busch",
-                city: "St Louis",
-                state: "Missouri"
-            },
-            {
-                name: "Fall Brewing Company",
-                city: "San Diego",
-                state: "California"
-            }
+            name: "Anheuser-Busch",
+            city: "St Louis",
+            state: "Missouri"
+        },
+        {
+            name: "Fall Brewing Company",
+            city: "San Diego",
+            state: "California"
+        }
         ]
         const beerData = [{
-                name: "Budlight",
-                style: "Lager - American Light",
-                ounces: "12"
-            },
-            {
-                name: "PBR",
-                style: "Lager - American Light",
-                ounces: "12"
-            }
+            name: "Budlight",
+            style: "Lager - American Light",
+            ounces: "12"
+        },
+        {
+            name: "PBR",
+            style: "Lager - American Light",
+            ounces: "12"
+        }
         ]
 
         const hdlbrsObject = {
@@ -66,11 +66,18 @@ module.exports = function(app) {
         res.render("user", hdlbrsObject);
     });
 
+<<<<<<< HEAD
     app.get("/search", (req, res) => {
         // search results are rendered client side for this search view
+=======
+    //search results are rendered client side
+
+    app.get("/search", (req, res) => {
+>>>>>>> ebdca3e01e48c176633617fc77b0c7112ab62e5d
         res.render("search");
     });
+
     app.get("/add", (req, res) => {
-        res.render("add", {});
+        res.render("add");
     });
 };
