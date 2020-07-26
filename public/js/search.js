@@ -45,22 +45,35 @@ $(document).ready(() => {
     const brewStateInput = $("#breweryState");
 
     // When the form is submitted, we validate there's an email and password entered
-    // brewSearchForm.on("submit", event => {
-    //     event.preventDefault();
-    //     const searchData = {
-    //         name: brewNameInput.val().trim(),
-    //         city: brewCityInput.val().trim(),
-    //         state: brewStateInput.val().trim()
-    //     };
+    brewSearchForm.on("submit", event => {
+        event.preventDefault();
+        const searchData = {
+            name: brewNameInput.val().trim(),
+            city: brewCityInput.val().trim(),
+            state: brewStateInput.val().trim()
+        };
 
-    //     // If we have an email and password we run the loginUser function and clear the form
-    //     $.get("/api/brewery", searchData).then((req, res) => {
-    //         console.log(res);
-    //         // for (let i = 0; i < dbObj.length; i++) {
-    //         //     // Add a brewery to the brewery array
-    //         // }
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
-    // });
+        // If we have an email and password we run the loginUser function and clear the form
+        $.get("/api/brewery", searchData).then((breweries) => {
+            // dynamically render beers in the results area
+            renderBreweries(breweries);
+        }).catch(err => {
+            console.log(err);
+        });
+    });
+
+    function renderBreweries(breweries) {
+        // dynamically render breweries in the results area
+        const breweryHtml = breweries.map(brewery => {
+            const { name, city, state, id } = brewery;
+            const html = `<div>
+            <p> Name : ${name}</p>
+            <p> City : ${city}</p>
+            <p> State : ${state}</p>
+            <button style='font-size:12px' class="btn btn-success btn-fav-brewery" value="${id}">Fav <i class='fas fa-beer'></i></button>
+          </div>`
+            return html;
+        });
+        $("#listresults").html(breweryHtml.join(""));
+    }
 });
