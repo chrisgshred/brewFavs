@@ -19,7 +19,7 @@ $(document).ready(() => {
     listContainer.on("click", ".btn-fav-brewery", function (event) {
         $.get("/api/user_data").then(data => {
             const userId = data.id;
-            const postObj = { UserUserId: userId, BreweryId: event.target.value };
+            const postObj = { UserUserId: userId, BreweryId: this.value };
             console.log(postObj);
 
             $.post("/api/brewery/favorite", postObj);
