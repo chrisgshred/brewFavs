@@ -50,7 +50,7 @@ module.exports = function (app) {
           email: req.user.email
         }
       }).then((dbPost) => {
-        console.log(dbPost);
+        // console.log(dbPost);
         res.json({
           email: dbPost[0].email,
           id: dbPost[0].userId

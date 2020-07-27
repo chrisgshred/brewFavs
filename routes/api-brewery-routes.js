@@ -37,7 +37,6 @@ module.exports = function (app) {
             }
         }).then((dbPost) => {
             let breweryArr = [];
-            console.log(dbPost)
           const dbBreweries = dbPost[0].Breweries;
             for (let i = 0; i < dbBreweries.length; i++) {
                 let breweryObj = {
@@ -47,7 +46,6 @@ module.exports = function (app) {
                     city: dbBreweries[i].city
                 }
                 breweryArr.push(breweryObj);
-
             } 
            res.json(breweryArr)
         }).catch(err => {
@@ -64,17 +62,16 @@ module.exports = function (app) {
                 ]
             }
         }).then((result) => {
-            console.log(result);
-            res.redirect(307, "/user");
+            res.render("user");
         }).catch(err => {
+            console.log(err);
             res.status(401).json(err);
         });
     });
 
     app.post("/api/brewery/favorite", (req, res) => {
         db.UserFavBrewery.create(req.body).then((result) => {
-            console.log(result);
-            res.redirect(307, "/user");
+            res.status(200);
         }).catch(err => {
             res.status(401).json(err);
         });

@@ -51,7 +51,6 @@ module.exports = function (app) {
                     ounces: dbBeers[i].ounces
                 }
                 beerArr.push(beerObj);
-
             } 
            res.json(beerArr)
         }).catch(err => {
@@ -62,19 +61,14 @@ module.exports = function (app) {
 
 
     app.post("/api/beer/favorite", (req, res) => {
-        console.log("in api favorites -----------")
         db.UserFavBeer.create(req.body).then((result) => {
-            console.log(result);
-            res.redirect(303, "/user");
+            res.status(200);
         }).catch(err => {
-            console.log("err in /api/beer/favorite");
-            console.log(err);
             res.status(401).json(err);
         });
     });
 
     app.delete("/api/beer/favorite/:uid/:bid", (req, res) => {
-      //  console.log("in api delete fav -----------")
         db.UserFavBeer.destroy({
             where: {
                 [Op.and]: [
@@ -83,8 +77,7 @@ module.exports = function (app) {
                 ]
             }
         }).then((result) => {
-            console.log(result);
-            res.redirect(303, "/user");
+           res.render("user");
         }).catch(err => {
             console.log(err);
             res.status(401).json(err);

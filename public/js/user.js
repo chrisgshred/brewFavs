@@ -1,52 +1,54 @@
 $(document).ready(() => {
-    // Getting references to our form and inputs
-    /*     const beerSearchForm = $("#beerSearchForm");
-        const nameInput = $("#nameField");
-        const styleInput = $("#styleSelect");
-        const ouncesInput = $("#ouncesSelect"); */
-  
+    const beerListContainer = $("#listresults");
+    const breweryListContainer = $("#breweryList");
+
+    beerListContainer.on("click", ".btn-fav-beer", function (event) {
         $.get("/api/user_data").then(data => {
-            // $(".member-name").text(data.email);
             const userId = data.id;
-            const email = data.email;
-            $(".email").text(email)
+            const beerId = this.value;
 
-
-            $.get("/api/beer/favorite/" + userId).then((beers) => {
-                // dynamically render beers in the results area
-                renderBeers(beers);
-              //  removeFavBeer();
-            }).catch(err => {
-                console.log(err);
-            });
-
-            // If we have an email and password we run the loginUser function and clear the form
-            $.get("/api/brewery/favorite/" + userId).then((breweries) => {
-                // dynamically render beers in the results area
-                renderBreweries(breweries);
-            }).catch(err => {
-                console.log(err);
-            });
-        });
-    
-    function removeFavBeer() {
-        $(".btn-fav-beer").on("click", (event) => {
-            $.get("/api/user_data").then(data => {
-                const userId = data.id;
-                const beerId = event.target.value;
-                console.log(`userId- ${userId} and beerId- ${beerId}`);
-                $.ajax({ url: `/api/beer/favorite/${userId}/${beerId}`, method: "DELETE" })
-                    /* .then(function (data) {
-                        window.location.replace("/user");
-                    }) */
-                    .catch(function (err) {
-                        console.log(err);
-                    });
-
+            $.ajax({ url: `/api/beer/favorite/${userId}/${beerId}`, method: "DELETE" }).then(() => {
+                window.location.reload(true);
             })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
+    });
 
+    breweryListContainer.on("click", ".btn-fav-brewery", function (event) {
+        $.get("/api/user_data").then(data => {
+            const userId = data.id;
+            const breweryId = this.value;
+
+            $.ajax({ url: `/api/brewery/favorite/${userId}/${breweryId}`, method: "DELETE" }).then(() => {
+                window.location.reload(true);
+            })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
+    });
+
+    $.get("/api/user_data").then(data => {
+        const userId = data.id;
+        const email = data.email;
+        $(".email").text(email)
+
+
+        $.get("/api/beer/favorite/" + userId).then((beers) => {
+            renderBeers(beers);
+        }).catch(err => {
+            console.log(err);
         });
-    }
+
+
+        $.get("/api/brewery/favorite/" + userId).then((breweries) => {
+            renderBreweries(breweries);
+        }).catch(err => {
+            console.log(err);
+        });
+    });
 
     function renderBeers(beers) {
         // dynamically render beers in the results area
@@ -56,7 +58,7 @@ $(document).ready(() => {
             <p> Name : ${name}</p>
             <p> Style : ${style}</p>
             <p> Ounces : ${ounces}</p>
-            <button style='font-size:12px' class="btn btn-success btn-fav-beer" value="${id}">Fav <i class='fas fa-beer'></i></button>
+            <button style='font-size:12px' class="btn btn-danger btn-fav-beer" value="${id}">Delete <i class='fas fa-beer'></i></button>
           </div>`
             return html;
         });
@@ -71,7 +73,7 @@ $(document).ready(() => {
             <p> Name : ${name}</p>
             <p> City : ${city}</p>
             <p> State : ${state}</p>
-            <button style='font-size:12px' class="btn btn-success btn-fav-brewery" value="${id}">Fav <i class='fas fa-beer'></i></button>
+            <button style='font-size:12px' class="btn btn-danger btn-fav-brewery" value="${id}">Delete <i class='fas fa-beer'></i></button>
           </div>`
             return html;
         });

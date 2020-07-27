@@ -4,6 +4,27 @@ $(document).ready(() => {
     const nameInput = $("#nameField");
     const styleInput = $("#styleSelect");
     const ouncesInput = $("#ouncesSelect");
+    const listContainer = $("#listresults");
+
+    listContainer.on("click", ".btn-fav-beer", function (event) {
+        $.get("/api/user_data").then(data => {
+            const userId = data.id;
+            const postObj = { UserUserId: userId, BeerId: this.value };
+            console.log(postObj);
+
+            $.post("/api/beer/favorite", postObj);
+        })
+    });
+
+    listContainer.on("click", ".btn-fav-brewery", function (event) {
+        $.get("/api/user_data").then(data => {
+            const userId = data.id;
+            const postObj = { UserUserId: userId, BreweryId: event.target.value };
+            console.log(postObj);
+
+            $.post("/api/brewery/favorite", postObj);
+        })
+    });
 
     // When the form is submitted, we validate there's an email and password entered
     beerSearchForm.on("submit", event => {
@@ -18,26 +39,10 @@ $(document).ready(() => {
         $.get("/api/beer", searchData).then((beers) => {
             // dynamically render beers in the results area
             renderBeers(beers);
-            setupFavButtons();
         }).catch(err => {
             console.log(err);
         });
     });
-
-    function setupFavButtons() {
-        $(".btn-fav-beer").on("click", (event) => {
-            $.get("/api/user_data").then(data => {
-                const userId = data.id;
-                const postObj = { UserUserId: userId, BeerId: event.target.value };
-                console.log(postObj);
-
-                $.post("/api/beer/favorite", postObj).catch(err => {
-                    console.log(err);
-                });
-            })
-
-        });
-    }
 
     function renderBeers(beers) {
         // dynamically render beers in the results area
@@ -73,24 +78,10 @@ $(document).ready(() => {
         $.get("/api/brewery", searchData).then((breweries) => {
             // dynamically render beers in the results area
             renderBreweries(breweries);
-            setupBrewFavButtons();
         }).catch(err => {
             console.log(err);
         });
     });
-
-    function setupBrewFavButtons() {
-        $(".btn-fav-brewery").on("click", (event) => {
-            $.get("/api/user_data").then(data => {
-                const userId = data.id;
-                const postObj = { UserUserId: userId, BreweryId: event.target.value };
-                console.log(postObj);
-
-                $.post("/api/brewery/favorite", postObj);
-            })
-
-        });
-    }
 
     function renderBreweries(breweries) {
         // dynamically render breweries in the results area
@@ -102,7 +93,7 @@ $(document).ready(() => {
             <p> State : ${state}</p>
             <button style='font-size:12px' class="btn btn-success btn-fav-brewery" value="${id}">Fav <i class='fas fa-beer'></i></button>
           </div>`
-        //   console.log("brewry id " + id + "------------------");
+            //   console.log("brewry id " + id + "------------------");
             return html;
         });
         $("#listresults").html(breweryHtml.join(""));
