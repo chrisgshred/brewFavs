@@ -54,7 +54,7 @@ $(document).ready(() => {
         // dynamically render beers in the results area
         const beerHtml = beers.map(beer => {
             const { name, style, ounces, id } = beer;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> Style : ${style}</p>
             <p> Ounces : ${ounces}</p>
@@ -69,7 +69,7 @@ $(document).ready(() => {
         // dynamically render breweries in the results area
         const breweryHtml = breweries.map(brewery => {
             const { name, city, state, id } = brewery;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> City : ${city}</p>
             <p> State : ${state}</p>
