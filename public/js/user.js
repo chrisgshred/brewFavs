@@ -33,7 +33,7 @@ $(document).ready(() => {
             <p> Name : ${name}</p>
             <p> Style : ${style}</p>
             <p> Ounces : ${ounces}</p>
-            <button style='font-size:12px' class="btn btn-success btn-fav-beer" value="${id}">Fav <i class='fas fa-beer'></i></button>
+            <button style='font-size:12px' class="btn btn-danger btn-fav-beer" value="${id}">Delete <i class='fas fa-beer'></i></button>
           </div>`
             return html;
         });
@@ -48,7 +48,7 @@ $(document).ready(() => {
             <p> Name : ${name}</p>
             <p> City : ${city}</p>
             <p> State : ${state}</p>
-            <button style='font-size:12px' class="btn btn-success btn-fav-brewery" value="${id}">Fav <i class='fas fa-beer'></i></button>
+            <button style='font-size:12px' class="btn btn-danger btn-fav-brewery" value="${id}">Delete <i class='fas fa-beer'></i></button>
           </div>`
             return html;
         });
