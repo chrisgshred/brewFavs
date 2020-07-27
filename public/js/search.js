@@ -18,10 +18,24 @@ $(document).ready(() => {
         $.get("/api/beer", searchData).then((beers) => {
             // dynamically render beers in the results area
             renderBeers(beers);
+            setupFavButtons();
         }).catch(err => {
             console.log(err);
         });
     });
+
+    function setupFavButtons() {
+        $(".btn-fav-beer").on("click", (event) => {
+            $.get("/api/user_data").then(data => {
+                const userId = data.id;
+                const postObj = { UserUserId: userId, BeerId: event.target.value };
+                console.log(postObj);
+
+                $.post("/api/beer/favorite", postObj);
+            })
+
+        });
+    }
 
     function renderBeers(beers) {
         // dynamically render beers in the results area
@@ -81,8 +95,8 @@ $(document).ready(() => {
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8
-  });
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
+    });
 }

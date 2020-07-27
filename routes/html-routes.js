@@ -32,7 +32,7 @@ module.exports = function(app) {
         res.render("user");
     });
 
-    app.get("/search", (req, res) => {
+    app.get("/search", isAuthenticated, (req, res) => {
         // search results are rendered client side for this search view
         res.render("search");
     });
