@@ -32,8 +32,6 @@ nav a {
     width: 150px;
 }
 
-.my-favs-col {}
-
 .each-item {
     padding: 25px;
     border-radius: 8px;
@@ -41,14 +39,6 @@ nav a {
     -moz-box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
     box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
 }
-
-
-/* div * {border: 1px solid red;} */
-
-
-/* Tabs */
-
-#myTab {}
 
 #myTab .nav-item {
     width: 50%;
