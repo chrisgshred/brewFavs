@@ -51,7 +51,6 @@ module.exports = function (app) {
                     ounces: dbBeers[i].ounces
                 }
                 beerArr.push(beerObj);
-
             } 
            res.json(beerArr)
         }).catch(err => {
@@ -63,10 +62,8 @@ module.exports = function (app) {
 
     app.post("/api/beer/favorite", (req, res) => {
         db.UserFavBeer.create(req.body).then((result) => {
-            // console.log(result);
-            res.redirect(307, "/user");
+            res.status(200);
         }).catch(err => {
-            // console.log(err);
             res.status(401).json(err);
         });
     });
@@ -80,9 +77,9 @@ module.exports = function (app) {
                 ]
             }
         }).then((result) => {
-            // console.log(result);
-            res.redirect(307, "/user");
+           res.render("user");
         }).catch(err => {
+            console.log(err);
             res.status(401).json(err);
         });
     });
