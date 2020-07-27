@@ -3,11 +3,14 @@ body {
     min-height: 100vh;
 }
 
-header {
-    background: white;
-    padding: 20px 0;
-    width: 100%;
-    text-align: center;
+.img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 300px;
+    height: 150px;
 }
 
 #map {
@@ -29,25 +32,23 @@ nav a {
     width: 150px;
 }
 
-.my-favs-col {
-    
-}
+.my-favs-col {}
 
 .each-item {
     padding: 25px;
     border-radius: 8px;
-    -webkit-box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
-    -moz-box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
-    box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
 }
+
 
 /* div * {border: 1px solid red;} */
 
 
 /* Tabs */
 
-#myTab {
-}
+#myTab {}
 
 #myTab .nav-item {
     width: 50%;
@@ -58,5 +59,4 @@ nav a {
     text-transform: uppercase;
     font-weight: bolder;
     text-align: center;
-
 }
