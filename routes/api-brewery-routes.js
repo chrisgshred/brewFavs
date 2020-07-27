@@ -20,7 +20,8 @@ module.exports = function (app) {
             where: {
                 name: sequelize.where(sequelize.fn('LOWER', sequelize.col('name')), 'LIKE', '%' + req.query.name.toLowerCase() + '%'),
                 city: sequelize.where(sequelize.fn('LOWER', sequelize.col('city')), 'LIKE', '%' + req.query.city.toLowerCase() + '%'),
-                state: sequelize.where(sequelize.fn('LOWER', sequelize.col('state')), 'LIKE', '%' + req.query.state.toLowerCase() + '%')
+                state: sequelize.where(sequelize.fn('LOWER', sequelize.col('state')), 'LIKE', '%' + req.query.state.toLowerCase() + '%'),
+                id: sequelize.where(sequelize.fn('LOWER', sequelize.col('id')), 'LIKE', '%' + req.query.id.toLowerCase() + '%')
             }
         }).then((dbPost) => {
             res.json(dbPost);
