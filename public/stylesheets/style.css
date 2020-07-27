@@ -4,6 +4,59 @@ body {
 }
 
 header {
+    background: white;
+    padding: 20px 0;
+    width: 100%;
     text-align: center;
-    font-size: 100px;
+}
+
+#map {
+    height: 20em;
+}
+
+nav a {
+    font-size: 14px;
+    color: black !important;
+    text-align: center;
+}
+
+.row1 {
+    text-align: center;
+}
+
+.logo {
+    display: block;
+    width: 150px;
+}
+
+.my-favs-col {
+    
+}
+
+.each-item {
+    padding: 25px;
+    border-radius: 8px;
+    -webkit-box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
+    box-shadow: 0px 10px 24px -16px rgba(0,0,0,0.6);
+}
+
+/* div * {border: 1px solid red;} */
+
+
+/* Tabs */
+
+#myTab {
+}
+
+#myTab .nav-item {
+    width: 50%;
+}
+
+#myTab .nav-item a {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bolder;
+    text-align: center;
+
 }
