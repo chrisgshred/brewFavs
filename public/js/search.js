@@ -48,7 +48,7 @@ $(document).ready(() => {
         // dynamically render beers in the results area
         const beerHtml = beers.map(beer => {
             const { name, style, ounces, id } = beer;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> Style : ${style}</p>
             <p> Ounces : ${ounces}</p>
@@ -87,7 +87,7 @@ $(document).ready(() => {
         // dynamically render breweries in the results area
         const breweryHtml = breweries.map(brewery => {
             const { name, city, state, id } = brewery;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> City : ${city}</p>
             <p> State : ${state}</p>
@@ -100,11 +100,53 @@ $(document).ready(() => {
     }
 });
 
-let map;
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8
+
+//function to convert brewery locations (city, state) to lat/lon for googlemap placement
+function brewCoordinates() {
+    var NodeGeocoder = require('node-geocoder');
+    
+    var geocoder = NodeGeocoder({
+    provider: 'opencage',
+    apiKey: 'c8c4ea1b63104d4ea43ab848452d9538'
     });
-}
+    
+    // Using callback
+    geocoder.geocode('37.4396, -122.1864', function (err, res) {
+    console.log(res);
+    });
+    geocoder.geocode('29 champs elysée paris', function (err, res) {
+    console.log(res);
+    });
+    };
+    
+    
+    //google map function to render results on map
+    var map;
+    function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 4,
+    center: new google.maps.LatLng(41.2565, -95.9345),
+    mapTypeId: 'terrain'
+    });
+    
+    // Create a <script> tag and set the USGS URL as the source.
+    var script = document.createElement('script');
+    // This example uses a local copy of the GeoJSON stored at
+    // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+    script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+    document.getElementsByTagName('head')[0].appendChild(script);
+    }
+    
+    // Loop through the results array and place a marker for each
+    // set of coordinates.
+    window.eqfeed_callback = function (results) {
+    for (var i = 0; i < results.features.length; i++) {
+    var coords = results.features[i].geometry.coordinates;
+    var latLng = new google.maps.LatLng(coords[1], coords[0]);
+    var marker = new google.maps.Marker({
+    position: latLng,
+    map: map
+    });
+    }
+    }
