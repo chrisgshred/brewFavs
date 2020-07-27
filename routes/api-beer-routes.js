@@ -24,10 +24,7 @@ module.exports = function (app) {
                 ounces: sequelize.where(sequelize.fn('LOWER', sequelize.col('ounces')), 'LIKE', '%' + req.query.ounces.toLowerCase() + '%')
             }
         }).then((dbPost) => {
-            // console.log(dbPost);
             jsonDb = dbPost.map(post => post.toJSON());
-            // console.log(jsonDb);
-
             res.json(jsonDb);
         }).catch(err => {
             res.status(401).json(err);
@@ -36,21 +33,19 @@ module.exports = function (app) {
     });
 
     app.get("/api/beer/favorite/:userId", (req, res) => {
-
         db.User.findAll({
             include: db.Beer,
             where: {
                 userId: parseInt(req.params.userId)
             }
         }).then((dbPost) => {
-            console.log("dbPost-----");
+           
            
             let beerArr = [];
             const dbBeers = dbPost[0].Beers;
-            console.log("----------------");
-            console.log(dbBeers);
             for (let i = 0; i < dbBeers.length; i++) {
                 let beerObj = {
+                    id: dbBeers[i].id,
                     name: dbBeers[i].name,
                     style: dbBeers[i].style,
                     ounces: dbBeers[i].ounces
@@ -58,13 +53,7 @@ module.exports = function (app) {
                 beerArr.push(beerObj);
 
             } 
-
-            const responseObj = {
-                user: dbPost[0].email,
-                beers: beerArr
-            }
-            console.log(responseObj);
-            res.json(responseObj);
+           res.json(beerArr)
         }).catch(err => {
             res.status(401).json(err);
         });
