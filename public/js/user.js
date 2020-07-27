@@ -1,27 +1,49 @@
 $(document).ready(() => {
-    // Getting references to our form and inputs
-    const beerSearchForm = $("#beerSearchForm");
-    const nameInput = $("#nameField");
-    const styleInput = $("#styleSelect");
-    const ouncesInput = $("#ouncesSelect");
+    const beerListContainer = $("#listresults");
+    const breweryListContainer = $("#breweryList");
+
+    beerListContainer.on("click", ".btn-fav-beer", function (event) {
+        $.get("/api/user_data").then(data => {
+            const userId = data.id;
+            const beerId = this.value;
+
+            $.ajax({ url: `/api/beer/favorite/${userId}/${beerId}`, method: "DELETE" }).then(() => {
+                window.location.reload(true);
+            })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
+    });
+
+    breweryListContainer.on("click", ".btn-fav-brewery", function (event) {
+        $.get("/api/user_data").then(data => {
+            const userId = data.id;
+            const breweryId = this.value;
+
+            $.ajax({ url: `/api/brewery/favorite/${userId}/${breweryId}`, method: "DELETE" }).then(() => {
+                window.location.reload(true);
+            })
+                .catch(function (err) {
+                    console.log(err);
+                });
+        })
+    });
 
     $.get("/api/user_data").then(data => {
-        // $(".member-name").text(data.email);
         const userId = data.id;
         const email = data.email;
         $(".email").text(email)
 
 
         $.get("/api/beer/favorite/" + userId).then((beers) => {
-            // dynamically render beers in the results area
             renderBeers(beers);
         }).catch(err => {
             console.log(err);
         });
 
-        // If we have an email and password we run the loginUser function and clear the form
+
         $.get("/api/brewery/favorite/" + userId).then((breweries) => {
-            // dynamically render beers in the results area
             renderBreweries(breweries);
         }).catch(err => {
             console.log(err);
@@ -32,7 +54,7 @@ $(document).ready(() => {
         // dynamically render beers in the results area
         const beerHtml = beers.map(beer => {
             const { name, style, ounces, id } = beer;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> Style : ${style}</p>
             <p> Ounces : ${ounces}</p>
@@ -47,7 +69,7 @@ $(document).ready(() => {
         // dynamically render breweries in the results area
         const breweryHtml = breweries.map(brewery => {
             const { name, city, state, id } = brewery;
-            const html = `<div>
+            const html = `<div class="each-item">
             <p> Name : ${name}</p>
             <p> City : ${city}</p>
             <p> State : ${state}</p>
