@@ -8,6 +8,9 @@ $(document).ready(() => {
     $.get("/api/user_data").then(data => {
         // $(".member-name").text(data.email);
         const userId = data.id;
+        const email = data.email;
+        $(".email").text(email)
+
 
         $.get("/api/beer/favorite/" + userId).then((beers) => {
             // dynamically render beers in the results area
@@ -17,7 +20,7 @@ $(document).ready(() => {
         });
 
         // If we have an email and password we run the loginUser function and clear the form
-        $.get("/api/brewery/favorite/"+userId).then((breweries) => {
+        $.get("/api/brewery/favorite/" + userId).then((breweries) => {
             // dynamically render beers in the results area
             renderBreweries(breweries);
         }).catch(err => {
