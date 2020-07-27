@@ -62,12 +62,11 @@ module.exports = function (app) {
 
 
     app.post("/api/beer/favorite", (req, res) => {
-        console.log("in api favorites -----------")
         db.UserFavBeer.create(req.body).then((result) => {
-            console.log(result);
+            // console.log(result);
             res.redirect(307, "/user");
         }).catch(err => {
-            console.log(err);
+            // console.log(err);
             res.status(401).json(err);
         });
     });
@@ -81,7 +80,7 @@ module.exports = function (app) {
                 ]
             }
         }).then((result) => {
-            console.log(result);
+            // console.log(result);
             res.redirect(307, "/user");
         }).catch(err => {
             res.status(401).json(err);

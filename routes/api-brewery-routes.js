@@ -37,7 +37,7 @@ module.exports = function (app) {
             }
         }).then((dbPost) => {
             let breweryArr = [];
-            console.log(dbPost)
+            // console.log(dbPost)
           const dbBreweries = dbPost[0].Breweries;
             for (let i = 0; i < dbBreweries.length; i++) {
                 let breweryObj = {
