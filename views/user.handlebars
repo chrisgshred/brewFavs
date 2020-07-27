@@ -1,55 +1,51 @@
-
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-
 
 <br>
 
 <div class="container">
+
   <div class="row1">
-    <div class="icon">
-      <h5>My Account</h5>
+    <div>
+      <h5>Home</h5>
       <p class="email"></p>
     </div>
   </div>
 
-  <br>
-  <div class="row ">
-    <div class="col-6 d-flex justify-content-center">Brews
-      <i class='fa fa-beer' style='font-size:20px'></i>
+  <div class="row my-favs-col">
+    <div class="col-md-6 col-sm-12 d-flex justify-content-center">
+      <div class="row" id="fav-beer">
+        <div class="userstats col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Favorite Beers</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                 <div id="listresults">
 
-      <div class="container">
-        <div class="row" id="fav-beer">
-          <div class="userstats col-12 ">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">My Favorite Beers</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="listresults">
-                </h6>
-              </div>
+                </div>
+              </h6>
             </div>
           </div>
         </div>
       </div>
-      <br>
-
-
     </div>
-    <div class="col-6 d-flex justify-content-center">Breweries
-      <i class="fa fa-home" style="font-size:20px"></i>
-      <div class="container">
-        <div class="row" id="fav-brewery">
-          <div class="userstats col-12 ">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">My Favorite Breweries</h5>
-                <h6 class="card-subtitle mb-2 text-muted" id="breweryList">
-                </h6>
-              </div>
+    <div class="col-md-6 col-sm-12 d-flex justify-content-center">
+      <div class="row" id="fav-beer">
+        <div class="userstats col-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Favorite Breweries</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                 <div id="breweryList">
+                  
+                </div>
+              </h6>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
+
 <script src="/js/user.js"></script>
