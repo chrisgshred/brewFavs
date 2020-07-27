@@ -8,7 +8,7 @@ module.exports = function (app) {
             city: req.body.city,
             state: req.body.state
         }).then(() => {
-            res.redirect(307, "/profile");
+            res.redirect(307, "/user");
         }).catch(err => {
             res.status(401).json(err);
         });
@@ -65,7 +65,7 @@ module.exports = function (app) {
             }
         }).then((result) => {
             console.log(result);
-            res.redirect(307, "/profile");
+            res.redirect(307, "/user");
         }).catch(err => {
             res.status(401).json(err);
         });
@@ -74,7 +74,7 @@ module.exports = function (app) {
     app.post("/api/brewery/favorite", (req, res) => {
         db.UserFavBrewery.create(req.body).then((result) => {
             console.log(result);
-            res.redirect(307, "/profile");
+            res.redirect(307, "/user");
         }).catch(err => {
             res.status(401).json(err);
         });

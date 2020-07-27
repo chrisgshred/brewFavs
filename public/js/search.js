@@ -18,10 +18,24 @@ $(document).ready(() => {
         $.get("/api/beer", searchData).then((beers) => {
             // dynamically render beers in the results area
             renderBeers(beers);
+            setupFavButtons();
         }).catch(err => {
             console.log(err);
         });
     });
+
+    function setupFavButtons() {
+        $(".btn-fav-beer").on("click", (event) => {
+            $.get("/api/user_data").then(data => {
+                const userId = data.id;
+                const postObj = { UserUserId: userId, BeerId: event.target.value };
+                console.log(postObj);
+
+                $.post("/api/beer/favorite", postObj);
+            })
+
+        });
+    }
 
     function renderBeers(beers) {
         // dynamically render beers in the results area
@@ -57,10 +71,24 @@ $(document).ready(() => {
         $.get("/api/brewery", searchData).then((breweries) => {
             // dynamically render beers in the results area
             renderBreweries(breweries);
+            setupBrewFavButtons();
         }).catch(err => {
             console.log(err);
         });
     });
+
+    function setupBrewFavButtons() {
+        $(".btn-fav-brewery").on("click", (event) => {
+            $.get("/api/user_data").then(data => {
+                const userId = data.id;
+                const postObj = { UserUserId: userId, BreweryId: event.target.value };
+                console.log(postObj);
+
+                $.post("/api/brewery/favorite", postObj);
+            })
+
+        });
+    }
 
     function renderBreweries(breweries) {
         // dynamically render breweries in the results area
@@ -72,6 +100,7 @@ $(document).ready(() => {
             <p> State : ${state}</p>
             <button style='font-size:12px' class="btn btn-success btn-fav-brewery" value="${id}">Fav <i class='fas fa-beer'></i></button>
           </div>`
+        //   console.log("brewry id " + id + "------------------");
             return html;
         });
         $("#listresults").html(breweryHtml.join(""));
@@ -81,8 +110,8 @@ $(document).ready(() => {
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8
-  });
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
+    });
 }
