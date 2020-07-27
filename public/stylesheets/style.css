@@ -1,6 +1,8 @@
 body {
     background-image: linear-gradient(#FFFFFF, #FEFEC4, #FEF7A2);
     min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
 }
 
 header {
@@ -8,10 +10,6 @@ header {
     padding: 20px 0;
     width: 100%;
     text-align: center;
-}
-
-#map {
-    height: 20em;
 }
 
 nav a {
@@ -59,4 +57,14 @@ nav a {
     font-weight: bolder;
     text-align: center;
 
+}
+
+footer {
+    text-align: center;
+    min-height: 100vh;
+    padding-top: 100px;
+}
+
+#map {
+    height: 20em;
 }
