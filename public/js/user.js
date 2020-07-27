@@ -1,32 +1,52 @@
 $(document).ready(() => {
     // Getting references to our form and inputs
-    const beerSearchForm = $("#beerSearchForm");
-    const nameInput = $("#nameField");
-    const styleInput = $("#styleSelect");
-    const ouncesInput = $("#ouncesSelect");
+    /*     const beerSearchForm = $("#beerSearchForm");
+        const nameInput = $("#nameField");
+        const styleInput = $("#styleSelect");
+        const ouncesInput = $("#ouncesSelect"); */
+  
+        $.get("/api/user_data").then(data => {
+            // $(".member-name").text(data.email);
+            const userId = data.id;
+            const email = data.email;
+            $(".email").text(email)
 
-    $.get("/api/user_data").then(data => {
-        // $(".member-name").text(data.email);
-        const userId = data.id;
-        const email = data.email;
-        $(".email").text(email)
 
+            $.get("/api/beer/favorite/" + userId).then((beers) => {
+                // dynamically render beers in the results area
+                renderBeers(beers);
+              //  removeFavBeer();
+            }).catch(err => {
+                console.log(err);
+            });
 
-        $.get("/api/beer/favorite/" + userId).then((beers) => {
-            // dynamically render beers in the results area
-            renderBeers(beers);
-        }).catch(err => {
-            console.log(err);
+            // If we have an email and password we run the loginUser function and clear the form
+            $.get("/api/brewery/favorite/" + userId).then((breweries) => {
+                // dynamically render beers in the results area
+                renderBreweries(breweries);
+            }).catch(err => {
+                console.log(err);
+            });
         });
+    
+    function removeFavBeer() {
+        $(".btn-fav-beer").on("click", (event) => {
+            $.get("/api/user_data").then(data => {
+                const userId = data.id;
+                const beerId = event.target.value;
+                console.log(`userId- ${userId} and beerId- ${beerId}`);
+                $.ajax({ url: `/api/beer/favorite/${userId}/${beerId}`, method: "DELETE" })
+                    /* .then(function (data) {
+                        window.location.replace("/user");
+                    }) */
+                    .catch(function (err) {
+                        console.log(err);
+                    });
 
-        // If we have an email and password we run the loginUser function and clear the form
-        $.get("/api/brewery/favorite/" + userId).then((breweries) => {
-            // dynamically render beers in the results area
-            renderBreweries(breweries);
-        }).catch(err => {
-            console.log(err);
+            })
+
         });
-    });
+    }
 
     function renderBeers(beers) {
         // dynamically render beers in the results area

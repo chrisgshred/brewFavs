@@ -65,14 +65,16 @@ module.exports = function (app) {
         console.log("in api favorites -----------")
         db.UserFavBeer.create(req.body).then((result) => {
             console.log(result);
-            res.redirect(307, "/user");
+            res.redirect(303, "/user");
         }).catch(err => {
+            console.log("err in /api/beer/favorite");
             console.log(err);
             res.status(401).json(err);
         });
     });
 
     app.delete("/api/beer/favorite/:uid/:bid", (req, res) => {
+      //  console.log("in api delete fav -----------")
         db.UserFavBeer.destroy({
             where: {
                 [Op.and]: [
@@ -82,8 +84,9 @@ module.exports = function (app) {
             }
         }).then((result) => {
             console.log(result);
-            res.redirect(307, "/user");
+            res.redirect(303, "/user");
         }).catch(err => {
+            console.log(err);
             res.status(401).json(err);
         });
     });

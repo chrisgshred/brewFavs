@@ -31,7 +31,9 @@ $(document).ready(() => {
                 const postObj = { UserUserId: userId, BeerId: event.target.value };
                 console.log(postObj);
 
-                $.post("/api/beer/favorite", postObj);
+                $.post("/api/beer/favorite", postObj).catch(err => {
+                    console.log(err);
+                });
             })
 
         });
