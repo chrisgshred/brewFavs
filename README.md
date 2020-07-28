@@ -6,17 +6,19 @@ An app for beer lovers which allows them to  create a profile, search for beers 
 
 The technologies user are as follows:
 
-Bootstrap, FontAwesome, CSS - for styling
-HTML for user interface.
-jQuery for client side logic implementation.
-MySql data base is used for data persistance.
-Node, and npm packages like Express, Handlebars, passport, sequelize ORM were used at server side
-Google Places was used for displaying map and related activities.
+- Front-end
+    - UI: HTML
+    - Styles: CSS, Bootstrap, FontAwesome, Adobe Illustrator
+    - Client Side logic : jQuery
+    - Map related functionality : Google Places
 
+- Back-end:
+    - Server side logic : node.js
+    - Npm packages used : express, handlebars, sequelize, mysql2, passport
 
-## Table of Contents (Optional)
+- Database: MySql 
 
-If your README is very long, add a table of contents to make it easy for users to find what they need.
+## Table of Contents 
 
 * [Installation](#installation)
 * [Usage](#usage)
