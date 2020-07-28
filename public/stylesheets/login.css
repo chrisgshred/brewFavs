@@ -1,0 +1,16 @@
+.img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 25%;
+    height: 25%;
+}
+
+body {
+    background: #eceeec;
+    min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    color: #2F3C48;
+}

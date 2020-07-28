@@ -1,7 +1,11 @@
 body {
-    background-image: linear-gradient(#FFFFFF, #FEFEC4, #FEF7A2);
+    background: #2F3C48;
     min-height: 100vh;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.navbar {
+    background-color: #ECEEEC;
 }
 
 .img {
@@ -10,17 +14,17 @@ body {
     margin-right: auto;
     margin-top: 30px;
     margin-bottom: 30px;
+    width: 25%;
+    height: 25%;
 }
 
-.responsive {
-    max-width: 100%;
-    height: auto;
-}
+
 
 nav a {
-    font-size: 14px;
-    color: black !important;
+    font-size: 20px;
+    color: #1E2B37 !important;
     text-align: center;
+    font-weight: bold;
 }
 
 .row1 {
@@ -32,21 +36,28 @@ nav a {
     width: 150px;
 }
 
+
+
 .each-item {
     padding: 25px;
     border-radius: 8px;
     -webkit-box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
     box-shadow: 0px 10px 24px -16px rgba(0, 0, 0, 0.6);
+    color: #2F3C48;
 }
 
 #myTab .nav-item {
     width: 50%;
+    background-color: #ECEEEC;
+}
+
+#myTab .nav-link.active {
+    background-color: #1E2B37;
 }
 
 #myTab .nav-item a {
     font-size: 20px;
-    text-transform: uppercase;
     font-weight: bolder;
     text-align: center;
 }
@@ -55,8 +66,71 @@ footer {
     text-align: center;
     min-height: 100vh;
     padding-top: 100px;
+    color: #ECEEEC;
 }
 
 #map {
     height: 20em;
+}
+
+.nav-link {
+    color: #1E2B37;
+    border:#ECEEEC; 
+    
+}
+
+.nav-link:hover {
+    color:#ECEEEC;
+}
+
+.btn-danger {
+    color:#f0c36a;
+    background-color: black;
+    border-color: black;
+
+}
+
+.btn-success {
+    color:#f0c36a;
+    background-color: black;
+    border-color: black;
+}
+
+.btn-success:hover {
+    color: white;
+    background-color: black;
+}
+
+.card-body {
+    background-color: #ECEEEC;
+}
+
+.card-title {
+    color: #1E2B37;
+    font-weight: bold;
+}
+
+.email {
+    color: #ECEEEC;
+}
+
+h5 {
+    color: #ECEEEC;
+}
+
+h1 {
+    color: #ECEEEC;
+    font-size: 25px;
+}
+
+#beerSearchForm {
+    color: #ECEEEC
+}
+
+#brewerySearchForm {
+    color: #ECEEEC
+}
+
+#beerAddForm {
+    color: #ECEEEC
 }
